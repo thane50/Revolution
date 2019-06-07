@@ -10,14 +10,10 @@ use Libraries.Interface.Item2D
 use Libraries.Interface.Events.CollisionListener2D
 use Libraries.Compute.Vector2
 use Libraries.Interface.Events.KeyboardEvent
-use Libraries.Interface.Events.all
+use Libraries.Interface.Events.KeyboardListener
 use Libraries.Game.Graphics.ImageSheet
 
-class Main is Game, MouseListener
-//Keyboard
-InputMonitor monitor
-KeyboardEvent keys
-//color
+class Main is Game
 Color color
 //Drawables
     Drawable background
@@ -64,8 +60,5 @@ end
 
   
     action Update(number seconds)
-    
     end
-action ClickedMouse(MouseEvent event)
-end
 end
