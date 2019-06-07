@@ -10,17 +10,24 @@ use Libraries.Interface.Item2D
 use Libraries.Interface.Events.CollisionListener2D
 use Libraries.Compute.Vector2
 use Libraries.Interface.Events.KeyboardEvent
-use Libraries.Interface.Events.KeyboardListener
+use Libraries.Interface.Events.all
 use Libraries.Game.Graphics.ImageSheet
 
-class Main is Game
+class Main is Game, MouseListener
+//Keyboard
+InputMonitor monitor
+KeyboardEvent keys
+//color
 Color color
 //Drawables
     Drawable background
-  Drawable nukeCirc
-  Drawable point1
-   Drawable point2
+    Drawable nukeCirc
+    Drawable point1
+    Drawable point2
     Drawable point3
+    Drawable target1
+    Drawable target2
+    Drawable target3
 //Labels
 Label label
     action Main
@@ -47,9 +54,18 @@ point3:LoadFilledTriangle(30,40,50,10,10,10)
 point3:SetSize(10,10)
 point3:SetPosition(470,450)
 Add(point3)
+
+target1:LoadRectangle(10,10)
+target1:SetPosition(200,50)
+Add(target1)
+
+
 end
 
   
     action Update(number seconds)
+    
     end
+action ClickedMouse(MouseEvent event)
+end
 end
