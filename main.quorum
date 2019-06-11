@@ -13,52 +13,108 @@ use Libraries.Interface.Events.KeyboardEvent
 use Libraries.Interface.Events.all
 use Libraries.Game.Graphics.ImageSheet
 
-class Main is Game, MouseListener
-    //Keyboard
-    InputMonitor monitor
-    KeyboardEvent keys
-    //color
-    Color color
-    //Drawables
+class Main is Game
+Mouse target
+//Keyboard
+InputMonitor monitor
+KeyboardEvent Keys
+//color
+Color color
+//Drawables
     Drawable background
     Drawable nukeCirc
     Drawable point1
     Drawable point2
     Drawable point3
-    Drawable missile
-    Drawable missilepath
-    Drawable target
-    //Labels
-    Label label
+    Drawable target1
+    Drawable target2
+    Drawable target3
+    Drawable nuke
+    Drawable explosion
+//Labels
+Label label1
+Label label2
+Label label3
+Label countdown
+//int
+integer count = 50
+//bool
+boolean ctrue = false
     action Main
         StartGame()
     end
 
   
     action CreateGame
-        SetScreenSize(1024, 576)
-        background:Load("nuketown.png")
-        background:SetSize(1024, 576)
-        Add(background)    
-        point1:LoadFilledTriangle(30,40,50,10,10,10)
-        point1:SetSize(10,10)
-        point1:SetPosition(1024/2 + 250, 576/2)
-        Add(point1)
-        //point 2
-        point2:LoadFilledTriangle(30,40,50,10,10,10)
-        point2:SetSize(10,10)
-        point2:SetPosition(575,465)
-        Add(point2)
-        point2:SetColor(color:Red())
-        //point3
-        point3:LoadFilledTriangle(30,40,50,10,10,10)
-        point3:SetSize(10,10)
-        point3:SetPosition(170,415)
-        Add(point3)
-        point3:SetColor(color:Blue())
+    
+     point2:SetColor(color:Red())
+   point3:SetColor(color:Blue())
+SetScreenSize(1024, 576)
+    background:Load("resources/nuketown.png")
+    background:SetSize(1024, 576)
+    Add(background)    
+point1:LoadFilledTriangle(30,40,50,10,10,10)
+point1:SetSize(10,10)
+point1:SetPosition(837,410)
+Add(point1)
+//point 2
+point2:LoadFilledTriangle(30,40,50,10,10,10)
+point2:SetSize(10,10)
+point2:SetPosition(135,415)
+Add(point2)
+//point3
+point3:LoadFilledTriangle(30,40,50,10,10,10)
+point3:SetSize(10,10)
+point3:SetPosition(470,450)
+Add(point3)
+//targets
+target1:LoadRectangle(10,10)
+target1:SetPosition(250,400)
+Add(target1)
+target2:LoadRectangle(10,10)
+target2:SetPosition(515,430)
+Add(target2)
+//
+target3:LoadRectangle(10,10)
+target3:SetPosition(1024/2 + 250, 576/2)
+Add(target3)
+//
+
+//Labels
+countdown:SetText("Launching in ")
+countdown:SetPosition(50, 200)
+
+label1:SetText("The triangles are where you are launching from
+ and the squares are your targets")
+label1:SetPosition(5, 100)
+Add(label1)
+
+label2:SetText("Press A,B or C 
+to choose where to launch")
+label2:SetPosition(5, 200)
+Add(label2)
 end
 
   
+    action Update(number seconds)
+    //background:Hide()
+    
+if monitor:IsKeyPressed(Keys:SPACE)
+Add(countdown)
+ctrue = true
+end
+countdown:SetText("Launching in " + count/10)
+if count > 0 and ctrue = true
+count = count - 1
+elseif ctrue = false
+count = 50
+end
+    
+    end
+action ClickedMouse(MouseEvent event)
+
+end
+end
     action Update(number seconds)
     end
     action ClickedMouse(MouseEvent event)
