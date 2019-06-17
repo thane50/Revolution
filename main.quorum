@@ -62,6 +62,17 @@ end
 
   
     action Update(number seconds)
+    if monitor:IsKeyPressed(Keys:SPACE)
+Add(countdown)
+ctrue = true
+end
+countdown:SetText("Launching in " + count/10)
+if count > 0 and ctrue = true
+count = count - 1
+elseif ctrue = false
+count = 50
+end
+  
     end
     action ClickedMouse(MouseEvent event)
         if monitor:IsClicked()
